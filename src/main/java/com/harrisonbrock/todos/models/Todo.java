@@ -20,7 +20,8 @@ public class Todo {
     @Column(nullable = false)
     private String description;
 
-    private Date datestarted;
+//    @Temporal(TemporalType.DATE)
+//    private Date datestarted;
 
     private boolean completed;
 
