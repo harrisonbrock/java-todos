@@ -2,10 +2,7 @@ package com.harrisonbrock.todos.controllers;
 
 import com.harrisonbrock.todos.models.User;
 import com.harrisonbrock.todos.repositories.UserRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,10 @@ public class UserController {
     @GetMapping("/username/{name}")
     public User getUserById(@PathVariable String name) {
         return repository.findByUsername(name);
+    }
+
+    @PostMapping
+    public User insertOneUser(@RequestBody User newUser) {
+        return repository.save(newUser);
     }
 }
