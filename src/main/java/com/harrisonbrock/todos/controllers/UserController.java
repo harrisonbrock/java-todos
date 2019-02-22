@@ -3,6 +3,7 @@ package com.harrisonbrock.todos.controllers;
 import com.harrisonbrock.todos.models.User;
 import com.harrisonbrock.todos.repositories.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class UserController {
     @GetMapping
     public List<User> getAllUsers() {
         return repository.findAll();
+    }
+
+    @GetMapping("/userid/{id}")
+    public User getUserById(@PathVariable long id) {
+        return repository.findById(id).orElse(null);
     }
 }
