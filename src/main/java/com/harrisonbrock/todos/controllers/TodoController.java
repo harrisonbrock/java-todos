@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("todos")
@@ -27,6 +28,16 @@ public class TodoController {
     @GetMapping("/todoid/{id}")
     public Todo getTodoById(@PathVariable long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @GetMapping("/active")
+    public List<Todo> getTodosNotCompleted() {
+        return repository.findByCompletedFalse();
+    }
+
+    @GetMapping("/users")
+    public List<Objects[]> getTodoForUsers() {
+        return repository.getTodoAndUser();
     }
 }
 
