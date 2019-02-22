@@ -1,5 +1,6 @@
 package com.harrisonbrock.todos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,4 +23,9 @@ public class Todo {
     private Date datestarted;
 
     private boolean completed;
+
+    @ManyToOne()
+    @JoinColumn(name = "userid")
+    @JsonIgnore
+    private User user;
 }
