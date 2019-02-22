@@ -1,5 +1,6 @@
 package com.harrisonbrock.todos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,5 +20,6 @@ public class User {
     private String username;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
+    @JsonIgnore
     private Set<Todo> todos;
 }
