@@ -1,8 +1,10 @@
 package com.harrisonbrock.todos.controllers;
 
 import com.harrisonbrock.todos.models.Todo;
+import com.harrisonbrock.todos.models.User;
 import com.harrisonbrock.todos.repositories.TodoRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,16 +21,22 @@ public class TodoController {
         this.repository = repository;
     }
 
+
+    @ApiOperation(value = "Get all Todos", response = List.class)
     @GetMapping
     public List<Todo> getAllTodos() {
         return repository.findAll();
     }
 
+
+    @ApiOperation(value = "Get Todo base off user id", response = Todo.class)
     @GetMapping("/todoid/{id}")
     public Todo getTodoById(@PathVariable long id) {
         return repository.findById(id).orElse(null);
     }
 
+
+    @ApiOperation(value = "Get all Todo that are not completed", response = List.class)
     @GetMapping("/active")
     public List<Todo> getTodosNotCompleted() {
         return repository.findByCompletedFalse();
