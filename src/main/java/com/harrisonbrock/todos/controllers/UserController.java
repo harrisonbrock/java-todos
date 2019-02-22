@@ -28,4 +28,9 @@ public class UserController {
     public User getUserById(@PathVariable long id) {
         return repository.findById(id).orElse(null);
     }
+
+    @GetMapping("/username/{name}")
+    public User getUserById(@PathVariable String name) {
+        return repository.findByUsername(name);
+    }
 }
