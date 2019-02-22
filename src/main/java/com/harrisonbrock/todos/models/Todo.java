@@ -26,7 +26,7 @@ public class Todo {
     private boolean completed;
 
     @ManyToOne()
-    @JoinColumn(name = "userid")
+    @JoinColumn(name = "userid", nullable = false)
     @JsonIgnore
     private User user;
 }

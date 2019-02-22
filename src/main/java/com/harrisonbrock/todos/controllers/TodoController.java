@@ -2,14 +2,13 @@ package com.harrisonbrock.todos.controllers;
 
 import com.harrisonbrock.todos.models.Todo;
 import com.harrisonbrock.todos.repositories.TodoRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
 
+@Api(value = "Demo TODO Application", description = "Do not use this it's only a demo")
 @RestController
 @RequestMapping("todos")
 public class TodoController {
@@ -38,6 +37,11 @@ public class TodoController {
     @GetMapping("/users")
     public List<Objects[]> getTodoForUsers() {
         return repository.getTodoAndUser();
+    }
+
+    @PostMapping
+    public Todo insertOneTodo(@RequestBody Todo todo) {
+        return repository.save(todo);
     }
 }
 
